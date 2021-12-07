@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DuvarYazim</string>
+    <string name="disconnect_app">Do you want disconnect please use again back button</string>
 </resources>
