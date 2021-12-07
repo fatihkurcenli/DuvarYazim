@@ -1,6 +1,8 @@
 package com.autumnsun.duvaryazim.data.local
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import kotlinx.coroutines.flow.Flow
@@ -14,5 +16,8 @@ interface WallStreetDao {
 
     @Query("SELECT * FROM WALLSTREET")
     fun getAllWallStreet(): Flow<List<WallStreet>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(wallStreetWrite: WallStreet)
 
 }

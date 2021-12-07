@@ -10,9 +10,9 @@ import androidx.room.PrimaryKey
 @Entity
 data class WallStreet(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val writer: String,
     val wallStreet: String,
-    val timestamp: Long,
-    val isLiked: Boolean
+    val timestamp: Long = System.currentTimeMillis(),
+    val isLiked: Boolean = false
 )

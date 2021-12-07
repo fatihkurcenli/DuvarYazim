@@ -2,7 +2,9 @@ package com.autumnsun.duvaryazim.di
 
 import android.content.Context
 import androidx.room.Room
+import com.autumnsun.duvaryazim.data.local.WallStreetDao
 import com.autumnsun.duvaryazim.data.local.WallStreetDatabase
+import com.autumnsun.duvaryazim.ui.home.HomeRepository
 import com.autumnsun.duvaryazim.utils.Constants.DB_NAME
 import dagger.Module
 import dagger.Provides
@@ -37,7 +39,13 @@ object AppModule {
     @Provides
     fun provideWallStreetDao(
         wallStreetDatabase: WallStreetDatabase
-    ) = wallStreetDatabase.getNoteDao()
+    ) = wallStreetDatabase.getWallStreetDao()
+
+    @Singleton
+    @Provides
+    fun provideHomeRepo(
+        wallStreetDao: WallStreetDao
+    ) = HomeRepository(wallStreetDao = wallStreetDao)
 
 
 /*    @Singleton

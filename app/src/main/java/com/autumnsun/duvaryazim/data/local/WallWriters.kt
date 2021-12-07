@@ -15,5 +15,16 @@ import com.autumnsun.duvaryazim.utils.Constants.DB_VERSION_CODE
     exportSchema = false
 )
 abstract class WallStreetDatabase : RoomDatabase() {
-    abstract fun getNoteDao(): WallStreetDao
+
+    abstract fun getWallStreetDao(): WallStreetDao
 }
+
+/*
+@Database(
+    entities = [WallStreet::class],
+    version = DB_VERSION_CODE,
+    exportSchema = false
+)
+abstract class WallStreetDatabase : RoomDatabase() {
+    abstract fun getNoteDao(): WallStreetDao
+}*/
