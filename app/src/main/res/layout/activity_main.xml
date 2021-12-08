@@ -46,6 +46,7 @@
         android:id="@+id/fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_settings_24"
+        android:background="@color/purple_200"
+        android:src="@drawable/graffiti"
         app:layout_anchor="@id/bottomAppBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

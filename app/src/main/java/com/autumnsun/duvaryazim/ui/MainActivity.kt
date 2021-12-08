@@ -1,12 +1,15 @@
 package com.autumnsun.duvaryazim.ui
 
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.autumnsun.duvaryazim.R
 import com.autumnsun.duvaryazim.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,9 +33,39 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                R.id.homeFragment,
+                R.id.searchFragment,
+                R.id.favoriteFragment,
+                R.id.settingsFragment
+            )
+        )
         binding.bottomNavView.tabs[2].enabled = false
-        binding.bottomNavView.tabs[2].icon.alpha=0
+        binding.bottomNavView.tabs[2].icon.alpha = 0
+
+        setupActionBarWithNavController(
+            navController = navController,
+            configuration = appBarConfiguration
+        )
+
+        binding.fabButton.animate()
+        binding.fabButton.setOnClickListener {
+            navController.navigate(R.id.addWallStreetFragment)
+        }
+
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.bottom_menu, menu)
+        binding.bottomNavView.setupWithNavController(menu!!, navController)
+        return false
     }
 
     override fun onBackPressed() {
