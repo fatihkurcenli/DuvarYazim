@@ -13,6 +13,8 @@ data class WallStreet(
     val id: Int = 0,
     val writer: String,
     val wallStreet: String,
+    val imageUrl: String? = null,
+    val imageTypeConverter: String? = null,
     val timestamp: Long = System.currentTimeMillis(),
     val isLiked: Boolean = false
 )
