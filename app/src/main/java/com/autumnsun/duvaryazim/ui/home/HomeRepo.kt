@@ -9,5 +9,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepo {
     fun getAllWallStreet(): Flow<List<WallStreet>>
-    suspend fun insertWallWrite(wallWriter: WallStreet)
 }

@@ -15,10 +15,4 @@ class HomeRepository @Inject constructor(val wallStreetDao: WallStreetDao) : Hom
         return wallStreetDao.getAllWallStreet()
     }
 
-
-    override suspend fun insertWallWrite(wallWriter: WallStreet) {
-        wallStreetDao.insert(wallWriter)
-    }
-
-
 }

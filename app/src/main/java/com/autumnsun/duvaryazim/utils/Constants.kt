@@ -10,4 +10,6 @@ package com.autumnsun.duvaryazim.utils
 object Constants {
     const val DB_NAME = "wall_street_db"
     const val DB_VERSION_CODE = 1
+    const val NO_IMAGE_URL =
+        "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="
 }

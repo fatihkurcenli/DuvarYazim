@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.autumnsun.duvaryazim.data.local.WallStreetDao
 import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +17,9 @@ import javax.inject.Inject
 */
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(val homeRepo: HomeRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : ViewModel() {
+
+    val homeRepo = HomeRepository(wallStreetDao)
 
     private val _wallStreetItem = MutableLiveData<List<WallStreet>>()
     val wallStreetItem: LiveData<List<WallStreet>> = _wallStreetItem
@@ -31,7 +34,7 @@ class HomeViewModel @Inject constructor(val homeRepo: HomeRepository) : ViewMode
         getDataFromDatabase()
     }
 
-    fun setSomeData() = viewModelScope.launch(Dispatchers.IO) {
+/*    fun setSomeData() = viewModelScope.launch(Dispatchers.IO) {
         for (i in 0..10) {
             homeRepo.insertWallWrite(
                 WallStreet(
@@ -40,6 +43,6 @@ class HomeViewModel @Inject constructor(val homeRepo: HomeRepository) : ViewMode
                 )
             )
         }
-    }
+    }*/
 
 }
