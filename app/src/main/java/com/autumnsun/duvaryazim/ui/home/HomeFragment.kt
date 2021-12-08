@@ -12,6 +12,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun initializeUi() {
         mViewModel.setSomeData()
+
     }
 
     override val mViewModel: HomeViewModel
