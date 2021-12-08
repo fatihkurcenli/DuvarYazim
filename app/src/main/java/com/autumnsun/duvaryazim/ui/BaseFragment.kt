@@ -22,9 +22,9 @@ abstract class BaseFragment<T : ViewBinding, D : ViewModel>(@LayoutRes layoutRes
     abstract fun getViewBinding(): T
     abstract fun initializeUi()
 
-    /*  protected val navController by lazy {
-          (activity as MainActivity).navController
-      }*/
+    protected val navController by lazy {
+        (activity as MainActivity).navController
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +40,6 @@ abstract class BaseFragment<T : ViewBinding, D : ViewModel>(@LayoutRes layoutRes
         super.onViewCreated(view, savedInstanceState)
         initializeUi()
     }
-
-
 
 /*    protected val activityViewModel: MainViewModel
         get() = (activity as MainActivity).viewModel*/

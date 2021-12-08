@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="home" />
+    <item
+        android:id="@+id/writersFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search" />
+
+    <item
+        android:id="@+id/placeHolder"
+        android:icon="@drawable/ic_baseline_fireplace_24"
+        android:title="placeHolder" />
+
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="favorite" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings" />
+</menu>

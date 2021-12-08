@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.bottomNavView.tabs[2].enabled = false
+        binding.bottomNavView.tabs[2].icon.alpha=0
     }
 
     override fun onBackPressed() {
