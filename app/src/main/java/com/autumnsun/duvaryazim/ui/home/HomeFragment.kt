@@ -14,7 +14,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     override fun initializeUi() {
         //mViewModel.setSomeData()
 
-        val homeEpoxy = HomeEpoxyController()
+        val homeEpoxy = HomeEpoxyController(requireActivity()) { wallStreet ->
+            val navDirectionAction =
+                HomeFragmentDirections.actionHomeFragmentToAddWallStreetFragment(wallStreet)
+            navController.navigate(navDirectionAction)
+        }
         homeEpoxy.isLoading = true
         binding.homeEpoxy.setController(homeEpoxy)
         mViewModel.wallStreetItem.observe(viewLifecycleOwner) { listWallStreet ->

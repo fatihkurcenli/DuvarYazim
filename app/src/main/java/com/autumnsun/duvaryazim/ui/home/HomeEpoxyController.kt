@@ -1,17 +1,22 @@
 package com.autumnsun.duvaryazim.ui.home
 
+import android.content.Context
 import com.airbnb.epoxy.EpoxyController
 import com.autumnsun.duvaryazim.R
 import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import com.autumnsun.duvaryazim.databinding.ModelHomeItemBinding
 import com.autumnsun.duvaryazim.utils.LoadingEpoxyModel
 import com.autumnsun.duvaryazim.utils.ViewBindingKotlinModel
+import com.bumptech.glide.Glide
 
 /*
  Created by Fatih Kurcenli on 12/8/2021
 */
 
-class HomeEpoxyController : EpoxyController() {
+class HomeEpoxyController(
+    private val context: Context,
+    private val onClicked: (WallStreet) -> Unit
+) : EpoxyController() {
     var isLoading: Boolean = false
         set(value) {
             field = value
@@ -40,21 +45,23 @@ class HomeEpoxyController : EpoxyController() {
 
 
         wallStreetList.forEachIndexed { index, wallStreet ->
-            WallStreetModel(wallStreet).id(index).addTo(this)
+            WallStreetModel(context, wallStreet, onClicked).id(index).addTo(this)
         }
     }
 
 
     data class WallStreetModel(
+        val context: Context,
         val wallStreet: WallStreet,
+        val onClicked: (WallStreet) -> Unit
     ) : ViewBindingKotlinModel<ModelHomeItemBinding>(R.layout.model_home_item) {
         override fun ModelHomeItemBinding.bind() {
             wallStreetWrite.text = wallStreet.wallStreet
             wallStreetWriter.text = wallStreet.writer
-            /*Glide.with(context).load(news.newsImage).into(newsImage)
+            Glide.with(context).load(wallStreet.imageUrl).into(wallImage)
             root.setOnClickListener {
-                onClicked(news)
-            }*/
+                onClicked(wallStreet)
+            }
         }
     }
 }

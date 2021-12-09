@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.autumnsun.duvaryazim.ui.home.HomeFragment"
         android:label="WallStreet"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_addWallStreetFragment"
+            app:destination="@id/addWallStreetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.autumnsun.duvaryazim.ui.favorite.FavoriteFragment"
@@ -29,5 +33,12 @@
         android:id="@+id/addWallStreetFragment"
         android:name="com.autumnsun.duvaryazim.ui.addwallstreet.AddWallStreetFragment"
         android:label="Add WallStreet"
-        tools:layout="@layout/fragment_add_wall_street" />
+        tools:layout="@layout/fragment_add_wall_street">
+
+
+        <deepLink app:uri="https://www.wallstreet.com/update/{id}" />
+        <argument
+            android:name="wallStreetUpdate"
+            app:argType="com.autumnsun.duvaryazim.data.local.entity.WallStreet" />
+    </fragment>
 </navigation>
