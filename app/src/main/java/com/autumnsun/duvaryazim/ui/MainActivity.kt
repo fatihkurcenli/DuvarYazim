@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.settingsFragment
             )
         )
-        binding.bottomNavView.tabs[2].enabled = false
-        binding.bottomNavView.tabs[2].icon.alpha = 0
 
         setupActionBarWithNavController(
             navController = navController,

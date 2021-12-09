@@ -39,6 +39,8 @@
         <deepLink app:uri="https://www.wallstreet.com/update/{id}" />
         <argument
             android:name="wallStreetUpdate"
-            app:argType="com.autumnsun.duvaryazim.data.local.entity.WallStreet" />
+            android:defaultValue="@null"
+            app:argType="com.autumnsun.duvaryazim.data.local.entity.WallStreet"
+            app:nullable="true" />
     </fragment>
 </navigation>

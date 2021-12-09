@@ -8,12 +8,6 @@
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="search" />
-
-    <item
-        android:id="@+id/placeHolder"
-        android:icon="@drawable/ic_baseline_fireplace_24"
-        android:title="placeHolder" />
-
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_baseline_favorite_24"

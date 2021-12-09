@@ -26,12 +26,12 @@ class AddWallStreetFragment :
     override fun initializeUi() {
         safeArgs.let {
             it.wallStreetUpdate.apply {
-                binding.wallStreet.setText(this.wallStreet)
-                binding.wallStreetWriter.setText(this.writer)
-                binding.wallStreetImageUrl.setText(this.imageUrl)
-                imageUrl?.let {
+                binding.wallStreet.setText(this?.wallStreet)
+                binding.wallStreetWriter.setText(this?.writer)
+                binding.wallStreetImageUrl.setText(this?.imageUrl)
+                this?.imageUrl.let {
                     Glide.with(requireActivity())
-                        .load(imageUrl.toString())
+                        .load(it.toString())
                         .error(Constants.NO_IMAGE_URL)
                         .into(binding.imageViewWithUrl)
                 }
@@ -43,14 +43,33 @@ class AddWallStreetFragment :
                 .error(Constants.NO_IMAGE_URL)
                 .into(binding.imageViewWithUrl)
         }
-        binding.addWallStreetButton.setOnClickListener {
-            mViewModel.insertStreetWrite(
-                WallStreet(
-                    writer = binding.wallStreetWriter.text.toString(),
-                    wallStreet = binding.wallStreet.text.toString(),
-                    imageUrl = binding.wallStreetImageUrl.text.toString()
+
+        if (binding.wallStreet.text.isNullOrEmpty()) {
+            binding.addWallStreetButton.setOnClickListener {
+                if (binding.wallStreet.text?.isEmpty() == true) {
+                    binding.wallStreet.error = "Requeired field"
+                    return@setOnClickListener
+                }
+                mViewModel.insertStreetWrite(
+                    WallStreet(
+                        writer = binding.wallStreetWriter.text.toString(),
+                        wallStreet = binding.wallStreet.text.toString().trim(),
+                        imageUrl = binding.wallStreetImageUrl.text.toString()
+                    )
                 )
-            )
+            }
+        } else {
+            binding.addWallStreetButton.setOnClickListener {
+                mViewModel.insertStreetWrite(
+                    WallStreet(
+                        writer = binding.wallStreetWriter.text.toString(),
+                        wallStreet = binding.wallStreet.text.toString(),
+                        imageUrl = binding.wallStreetImageUrl.text.toString()
+                    )
+                )
+            }
         }
+
+
     }
 }
