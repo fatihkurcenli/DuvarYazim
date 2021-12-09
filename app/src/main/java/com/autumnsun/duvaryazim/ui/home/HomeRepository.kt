@@ -19,4 +19,11 @@ class HomeRepository @Inject constructor(val wallStreetDao: WallStreetDao) : Hom
         wallStreetDao.delete(wallStreet)
     }
 
+    override suspend fun updateWallWrite(wallWriter: WallStreet) {
+        wallStreetDao.updateItem(wallWriter)
+    }
+
+    override suspend fun getEntityById(id: String): WallStreet {
+        return wallStreetDao.getEntityById(id)
+    }
 }

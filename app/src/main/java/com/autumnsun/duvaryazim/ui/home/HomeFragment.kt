@@ -2,7 +2,6 @@ package com.autumnsun.duvaryazim.ui.home
 
 import android.graphics.Canvas
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -13,19 +12,23 @@ import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import com.autumnsun.duvaryazim.databinding.FragmentHomeBinding
 import com.autumnsun.duvaryazim.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.absoluteValue
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
+    private lateinit var homeEpoxy: HomeEpoxyController
 
     override fun initializeUi() {
         //mViewModel.setSomeData()
 
-        val homeEpoxy = HomeEpoxyController(requireActivity()) { wallStreet ->
+        homeEpoxy = HomeEpoxyController(requireActivity(), { wallStreet ->
             val navDirectionAction =
                 HomeFragmentDirections.actionHomeFragmentToAddWallStreetFragment(wallStreet, true)
             navController.navigate(navDirectionAction)
-        }
+        }, { likedWallStreet ->
+            mViewModel.likedWallStreetEntity(likedWallStreet)
+        })
         homeEpoxy.isLoading = true
         binding.homeEpoxy.setController(homeEpoxy)
         mViewModel.wallStreetItem.observe(viewLifecycleOwner) { listWallStreet ->
@@ -44,10 +47,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     position: Int,
                     direction: Int
                 ) {
-                    val itemWasEntityRemove = model?.wallStreet ?: return
-                    mViewModel.deleteWallStreetEntity(itemWasEntityRemove)
-                    itemView?.setBackgroundColor(Color.TRANSPARENT)
-                    Log.d("TAG", "deleted Item")
+                    val itemWasEntity = model?.wallStreet ?: return
+                    mViewModel.deleteWallStreetEntity(itemWasEntity)
                 }
 
                 override fun onSwipeProgressChanged(
@@ -57,15 +58,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     canvas: Canvas?
                 ) {
                     super.onSwipeProgressChanged(model, itemView, swipeProgress, canvas)
-                    if (swipeProgress > 0.15) {
-                        itemView?.setBackgroundColor(
-                            ContextCompat.getColor(
-                                requireContext(),
-                                R.color.delete_color
+                    itemView?.alpha = (1f - swipeProgress.absoluteValue)
+                    when {
+                        swipeProgress > 0 -> {
+                            itemView?.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.delete_color
+                                )
                             )
-                        )
-                    } else {
-                        itemView?.setBackgroundColor(Color.TRANSPARENT)
+                        }
+                        swipeProgress == 0.0F -> {
+                            itemView?.setBackgroundColor(Color.TRANSPARENT)
+                        }
+                        else -> {
+                            itemView?.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.teal_200
+                                )
+                            )
+                        }
                     }
                 }
 
@@ -75,6 +88,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 ) {
                     super.clearView(model, itemView)
                     itemView?.setBackgroundColor(Color.TRANSPARENT)
+                    itemView?.alpha = 1f
+                }
+
+                override fun onSwipeReleased(
+                    model: HomeEpoxyController.WallStreetModel?,
+                    itemView: View?
+                ) {
+                    super.onSwipeReleased(model, itemView)
+                    itemView?.alpha = 1f
                 }
             })
 
@@ -87,37 +109,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     fromPosition: Int, toPosition: Int,
                     modelBeingMoved: HomeEpoxyController.WallStreetModel, itemView: View
                 ) {
-                    // Called when a view has been dragged to a new position.
-                    // Epoxy will automatically update the models in the controller and notify
-                    // the RecyclerView of the move
                     mViewModel.updateList(fromPosition, toPosition)
-                    // You MUST use this callback to update your data to reflect the move
-                }
-
-                // You may optionally implement the below methods as hooks into the drag lifecycle.
-                // This allows you to style or animate the view as it is dragged.
-                override fun onDragStarted(
-                    model: HomeEpoxyController.WallStreetModel,
-                    itemView: View,
-                    adapterPosition: Int
-                ) {
-                }
-
-                override fun onDragReleased(
-                    model: HomeEpoxyController.WallStreetModel,
-                    itemView: View
-                ) {
-                }
-
-                override fun clearView(
-                    model: HomeEpoxyController.WallStreetModel,
-                    itemView: View
-                ) {
-                }
-
-                override fun isDragEnabledForModel(model: HomeEpoxyController.WallStreetModel): Boolean {
-                    // Override this to toggle disabling dragging for a model
-                    return true
                 }
             })
     }

@@ -10,4 +10,6 @@ import kotlinx.coroutines.flow.Flow
 interface HomeRepo {
     fun getAllWallStreet(): Flow<List<WallStreet>>
     suspend fun deleteEntity(wallStreet: WallStreet)
+    suspend fun updateWallWrite(wallWriter: WallStreet)
+    suspend fun getEntityById(id: String): WallStreet
 }
