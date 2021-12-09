@@ -15,7 +15,7 @@ interface WallStreetDao {
     fun getAllWallStreet(): Flow<List<WallStreet>>
 
     @Query("SELECT * FROM WALLSTREET WHERE id=:id")
-    fun getEntityById(id: Int): WallStreet
+    fun getEntityById(id: String): WallStreet
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(wallStreetWrite: WallStreet)

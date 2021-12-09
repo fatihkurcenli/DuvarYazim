@@ -8,9 +8,12 @@ import com.autumnsun.duvaryazim.data.local.WallStreetDao
 import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 /*
  Created by Fatih Kurcenli on 12/7/2021
@@ -32,6 +35,20 @@ class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : View
 
     init {
         getDataFromDatabase()
+    }
+
+    fun deleteWallStreetEntity(wallStreet: WallStreet) = viewModelScope.launch(Dispatchers.IO) {
+        homeRepo.deleteEntity(wallStreet)
+    }
+
+    fun updateList(fromPosition: Int, toPosition: Int) = viewModelScope.launch(Dispatchers.IO) {
+        delay(500L)
+        val newList: ArrayList<WallStreet> = ArrayList()
+        _wallStreetItem.value?.let {
+            newList.addAll(it)
+        }
+        Collections.swap(newList, fromPosition, toPosition);
+        _wallStreetItem.postValue(newList)
     }
 
 /*    fun setSomeData() = viewModelScope.launch(Dispatchers.IO) {

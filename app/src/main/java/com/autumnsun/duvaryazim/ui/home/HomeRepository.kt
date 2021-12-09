@@ -15,4 +15,8 @@ class HomeRepository @Inject constructor(val wallStreetDao: WallStreetDao) : Hom
         return wallStreetDao.getAllWallStreet()
     }
 
+    override suspend fun deleteEntity(wallStreet: WallStreet) {
+        wallStreetDao.delete(wallStreet)
+    }
+
 }

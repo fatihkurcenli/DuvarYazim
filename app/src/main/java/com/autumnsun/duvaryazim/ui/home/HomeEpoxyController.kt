@@ -45,7 +45,7 @@ class HomeEpoxyController(
 
 
         wallStreetList.forEachIndexed { index, wallStreet ->
-            WallStreetModel(context, wallStreet, onClicked).id(index).addTo(this)
+            WallStreetModel(context, wallStreet, onClicked).id(wallStreet.id).addTo(this)
         }
     }
 

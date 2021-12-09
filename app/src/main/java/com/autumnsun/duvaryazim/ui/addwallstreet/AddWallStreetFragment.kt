@@ -9,6 +9,10 @@ import com.autumnsun.duvaryazim.databinding.FragmentAddWallStreetBinding
 import com.autumnsun.duvaryazim.ui.BaseFragment
 import com.autumnsun.duvaryazim.utils.Constants
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +21,7 @@ class AddWallStreetFragment :
             AddWallStreetViewModel>(R.layout.fragment_add_wall_street) {
     private val safeArgs: AddWallStreetFragmentArgs by navArgs()
     private var updatePage: Boolean = false
-    private var selectedItemWallStreetId: Int? = null
+    private var selectedItemWallStreetId: String? = null
 
     override val mViewModel: AddWallStreetViewModel
         get() = ViewModelProvider(requireActivity()).get(AddWallStreetViewModel::class.java)

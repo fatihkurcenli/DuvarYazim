@@ -27,7 +27,7 @@ class AddWallStreetViewModel @Inject constructor(
 
 
     fun updateStreetWrite(
-        id: Int,
+        id: String,
         wallStreetWriter: String,
         wallStreet: String,
         wallStreetImageUrl: String,
