@@ -16,7 +16,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
         val homeEpoxy = HomeEpoxyController(requireActivity()) { wallStreet ->
             val navDirectionAction =
-                HomeFragmentDirections.actionHomeFragmentToAddWallStreetFragment(wallStreet)
+                HomeFragmentDirections.actionHomeFragmentToAddWallStreetFragment(wallStreet,true)
             navController.navigate(navDirectionAction)
         }
         homeEpoxy.isLoading = true

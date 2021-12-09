@@ -42,5 +42,10 @@
             android:defaultValue="@null"
             app:argType="com.autumnsun.duvaryazim.data.local.entity.WallStreet"
             app:nullable="true" />
+        <argument
+            android:name="isUpdatePage"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
     </fragment>
 </navigation>

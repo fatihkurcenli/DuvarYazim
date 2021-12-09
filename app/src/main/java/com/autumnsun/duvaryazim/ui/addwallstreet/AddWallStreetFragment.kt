@@ -16,6 +16,8 @@ class AddWallStreetFragment :
     BaseFragment<FragmentAddWallStreetBinding,
             AddWallStreetViewModel>(R.layout.fragment_add_wall_street) {
     private val safeArgs: AddWallStreetFragmentArgs by navArgs()
+    private var updatePage: Boolean = false
+    private var selectedItemWallStreetId: Int? = null
 
     override val mViewModel: AddWallStreetViewModel
         get() = ViewModelProvider(requireActivity()).get(AddWallStreetViewModel::class.java)
@@ -26,6 +28,7 @@ class AddWallStreetFragment :
     override fun initializeUi() {
         safeArgs.let {
             it.wallStreetUpdate.apply {
+                selectedItemWallStreetId = this?.id
                 binding.wallStreet.setText(this?.wallStreet)
                 binding.wallStreetWriter.setText(this?.writer)
                 binding.wallStreetImageUrl.setText(this?.imageUrl)
@@ -36,6 +39,9 @@ class AddWallStreetFragment :
                         .into(binding.imageViewWithUrl)
                 }
             }
+            it.isUpdatePage.let { updateBoolean ->
+                updatePage = updateBoolean
+            }
         }
         binding.wallStreetImageUrl.addTextChangedListener { imageUrl ->
             Glide.with(requireActivity())
@@ -44,7 +50,8 @@ class AddWallStreetFragment :
                 .into(binding.imageViewWithUrl)
         }
 
-        if (binding.wallStreet.text.isNullOrEmpty()) {
+        if (!updatePage) {
+            binding.addWallStreetButton.text = "Add"
             binding.addWallStreetButton.setOnClickListener {
                 if (binding.wallStreet.text?.isEmpty() == true) {
                     binding.wallStreet.error = "Requeired field"
@@ -59,17 +66,15 @@ class AddWallStreetFragment :
                 )
             }
         } else {
+            binding.addWallStreetButton.text = "Update"
             binding.addWallStreetButton.setOnClickListener {
-                mViewModel.insertStreetWrite(
-                    WallStreet(
-                        writer = binding.wallStreetWriter.text.toString(),
-                        wallStreet = binding.wallStreet.text.toString(),
-                        imageUrl = binding.wallStreetImageUrl.text.toString()
-                    )
+                mViewModel.updateStreetWrite(
+                    selectedItemWallStreetId!!,
+                    binding.wallStreetWriter.text.toString(),
+                    binding.wallStreet.text.toString(),
+                    binding.wallStreetImageUrl.text.toString()
                 )
             }
         }
-
-
     }
 }

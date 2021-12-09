@@ -13,4 +13,12 @@ constructor(val wallStreetDao: WallStreetDao) : AddWallStreetRepo {
     override suspend fun insertWallWrite(wallWriter: WallStreet) {
         wallStreetDao.insert(wallWriter)
     }
+
+    override suspend fun updateWallWrite(wallWriter: WallStreet) {
+        wallStreetDao.updateItem(wallWriter)
+    }
+
+    override suspend fun getEntityById(id: Int): WallStreet {
+        return wallStreetDao.getEntityById(id)
+    }
 }

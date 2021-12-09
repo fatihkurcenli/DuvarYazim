@@ -14,7 +14,7 @@ import javax.inject.Inject
 */
 
 @HiltViewModel
-class AddWallStreetViewModel @Inject constructor (
+class AddWallStreetViewModel @Inject constructor(
     val wallStreetDao: WallStreetDao
 ) : ViewModel() {
 
@@ -23,5 +23,21 @@ class AddWallStreetViewModel @Inject constructor (
 
     fun insertStreetWrite(wallStreet: WallStreet) = viewModelScope.launch(Dispatchers.IO) {
         addWallStreetRepo.insertWallWrite(wallStreet)
+    }
+
+
+    fun updateStreetWrite(
+        id: Int,
+        wallStreetWriter: String,
+        wallStreet: String,
+        wallStreetImageUrl: String,
+    ) = viewModelScope.launch(Dispatchers.IO) {
+        val localEntity = addWallStreetRepo.getEntityById(id)
+        val wallStreetEntityUpdated = localEntity.copy(
+            wallStreet = wallStreet,
+            writer = wallStreetWriter,
+            imageUrl = wallStreetImageUrl
+        )
+        addWallStreetRepo.updateWallWrite(wallStreetEntityUpdated)
     }
 }
