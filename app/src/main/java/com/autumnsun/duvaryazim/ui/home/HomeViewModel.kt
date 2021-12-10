@@ -30,7 +30,6 @@ class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : View
 
     private fun getDataFromDatabase() = viewModelScope.launch(Dispatchers.IO) {
         homeRepo.getAllWallStreet().collect {
-            Log.d("TAG", it.toString())
             _wallStreetItem.postValue(it)
         }
     }
@@ -45,7 +44,11 @@ class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : View
 
     fun likedWallStreetEntity(wallStreet: WallStreet) = viewModelScope.launch(Dispatchers.IO) {
         val localEntity = homeRepo.getEntityById(wallStreet.id)
-        val wallStreetEntityUpdated = localEntity.copy(isLiked = true)
+        val wallStreetEntityUpdated = if (localEntity.isLiked) {
+            localEntity.copy(isLiked = false)
+        } else {
+            localEntity.copy(isLiked = true)
+        }
         val newList: ArrayList<WallStreet> = ArrayList()
         _wallStreetItem.value?.let {
             newList.addAll(it)
