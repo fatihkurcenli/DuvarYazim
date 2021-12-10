@@ -1,16 +1,15 @@
 package com.autumnsun.duvaryazim.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.autumnsun.duvaryazim.R
 import com.autumnsun.duvaryazim.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,11 +25,13 @@ class MainActivity : AppCompatActivity() {
     private var disconnectApp: Boolean = false
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+    lateinit var toolBar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        toolBar = binding.viewAppBar.mainToolbar
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -42,28 +43,35 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        setupActionBarWithNavController(
+        binding.navBottomNavigationView.setupWithNavController(navController)
+
+/*        setupActionBarWithNavController(
             navController = navController,
             configuration = appBarConfiguration
-        )
+        )*/
+
 
         binding.fabButton.animate()
         binding.fabButton.setOnClickListener {
             navController.navigate(R.id.addWallStreetFragment)
         }
 
-
+        setSupportActionBar(binding.viewAppBar.mainToolbar)
+        binding.viewAppBar.mainToolbar.setupWithNavController(
+            navController,
+            appBarConfiguration
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+/*    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bottom_menu, menu)
-        binding.bottomNavView.setupWithNavController(menu!!, navController)
+        binding.navBottomNavigationView.setupWithNavController(menu!!, navController)
         return false
-    }
+    }*/
 
     override fun onBackPressed() {
         if (disconnectApp) {

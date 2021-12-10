@@ -15,6 +15,18 @@ class HomeRepository @Inject constructor(val wallStreetDao: WallStreetDao) : Hom
         return wallStreetDao.getAllWallStreet()
     }
 
+    override suspend fun insertWallWrite(wallWriter: WallStreet) {
+        wallStreetDao.insert(wallWriter)
+    }
+
+    override fun getSearchWithWallStreetName(wallStreetName: String): Flow<List<WallStreet>> {
+        return wallStreetDao.searchEntityFromDatabase(wallStreetName)
+    }
+
+    override suspend fun getAllList(): List<WallStreet> {
+        return wallStreetDao.getAllList()
+    }
+
     override suspend fun deleteEntity(wallStreet: WallStreet) {
         wallStreetDao.delete(wallStreet)
     }

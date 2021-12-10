@@ -12,4 +12,7 @@ interface HomeRepo {
     suspend fun deleteEntity(wallStreet: WallStreet)
     suspend fun updateWallWrite(wallWriter: WallStreet)
     suspend fun getEntityById(id: String): WallStreet
+    suspend fun getAllList(): List<WallStreet>
+    suspend fun insertWallWrite(wallWriter: WallStreet)
+    fun getSearchWithWallStreetName(wallStreetName: String): Flow<List<WallStreet>>
 }

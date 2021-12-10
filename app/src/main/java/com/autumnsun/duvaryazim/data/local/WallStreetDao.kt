@@ -11,8 +11,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WallStreetDao {
 
-    @Query("SELECT * FROM WALLSTREET ORDER BY timestamp")
+    @Query("SELECT * FROM WALLSTREET")
     fun getAllWallStreet(): Flow<List<WallStreet>>
+
+    @Query("SELECT * FROM WALLSTREET ORDER BY timestamp")
+    suspend fun getAllList(): List<WallStreet>
 
     @Query("SELECT * FROM WALLSTREET WHERE id=:id")
     fun getEntityById(id: String): WallStreet

@@ -1,6 +1,5 @@
 package com.autumnsun.duvaryazim.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -49,18 +48,25 @@ class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : View
         } else {
             localEntity.copy(isLiked = true)
         }
-        val newList: ArrayList<WallStreet> = ArrayList()
+        /*val newList: ArrayList<WallStreet> = ArrayList()
         _wallStreetItem.value?.let {
             newList.addAll(it)
         }
         newList.remove(localEntity)
         newList.add(wallStreetEntityUpdated)
-        _wallStreetItem.postValue(newList)
+        _wallStreetItem.postValue(newList)*/
         homeRepo.updateWallWrite(wallStreetEntityUpdated)
     }
 
     fun updateList(fromPosition: Int, toPosition: Int) = viewModelScope.launch(Dispatchers.IO) {
         delay(500L)
+/*        val allListItem = homeRepo.getAllList()
+        val changedModelToPosition = allListItem[toPosition]
+        val changedModelFromPosition = allListItem[fromPosition]
+        homeRepo.deleteEntity(allListItem[fromPosition])
+        homeRepo.deleteEntity(allListItem[toPosition])
+        homeRepo.insertWallWrite(changedModelToPosition)
+        homeRepo.insertWallWrite(changedModelFromPosition)*/
         val newList: ArrayList<WallStreet> = ArrayList()
         _wallStreetItem.value?.let {
             newList.addAll(it)

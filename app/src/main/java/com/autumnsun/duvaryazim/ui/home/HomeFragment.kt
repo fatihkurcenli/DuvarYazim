@@ -1,7 +1,9 @@
 package com.autumnsun.duvaryazim.ui.home
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.DragCallbacks
 import com.autumnsun.duvaryazim.R
@@ -32,6 +34,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         mViewModel.wallStreetItem.observe(viewLifecycleOwner) { listWallStreet ->
             homeEpoxy.wallStreetList = listWallStreet as ArrayList<WallStreet>
         }
+
+      /*  binding.homeEpoxy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                Log.d("TAG", "x:$dx, y:$dy")
+                if (dy == 2) {
+                    mainActivity.toolBar.visibility = View.VISIBLE
+                } else {
+
+                    mainActivity.toolBar.visibility = View.GONE
+                }
+            }
+        })*/
 
         // Setup swipe-to-delete
 /*        EpoxyTouchHelper.initSwiping(binding.homeEpoxy)
