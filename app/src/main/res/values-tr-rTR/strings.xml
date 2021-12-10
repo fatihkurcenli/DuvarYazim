@@ -2,4 +2,10 @@
 <resources>
     <string name="app_name">DuvarYazim</string>
     <string name="disconnect_app">Çıkmak istiyorsanız tekrardan basınız.</string>
+    <string name="preferences_name">first_initilize</string>
+    <string name="save_first">first_initilize</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

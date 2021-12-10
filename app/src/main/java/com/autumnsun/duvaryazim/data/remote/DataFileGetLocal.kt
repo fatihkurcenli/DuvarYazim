@@ -32,14 +32,41 @@ object DataFileGetLocal {
             writer = "Gece",
             wallStreet = "Ne kadar içersen iç, başın döner gidenler değil..",
             imageUrl = "https://listelist.com/wp-content/uploads/2016/01/en-iyi-duvar-yazilari-16.jpg",
-            timestamp = 1639162002
+            timestamp = 1639163102
         ),
         WallStreet(
             writer = "Mustafa",
             wallStreet = "Biz kimseyi yarı yolda bırakmadık, onlar müsait bir yerde indiler.",
             imageUrl = "https://cokiyiabi.com/wp-content/uploads/2020/04/kamyon-arkasi-yazilari-ve-sozleri6.jpg",
-            timestamp = 1639161002
+            timestamp = 1639163024
         ),
-        WallStreet(writer = "Denedsame", wallStreet = "test")
+        WallStreet(
+            writer = "Adsız",
+            wallStreet = "Azrail Blöf yapmaz",
+            imageUrl = "https://i2.milimaj.com/i/milliyet/75/750x0/604876ec55427f125045ed39.jpg",
+            timestamp = 1639163092
+        ),
+        WallStreet(
+            writer = "Adsız",
+            wallStreet = "Otopsi İstiyorum, hayallerim sadece eceliyle ölmüş olamaz.",
+            imageUrl = "https://www.neoldu.com/d/other/kamyon-arkasi-sozler-004.webp",
+            timestamp = 1639163112
+        ),
+        WallStreet(
+            writer = "Nusret",
+            wallStreet = "Bırak onlar galataya çıksınlar, biz senle leeehmacun yemeğe gidelim.",
+            imageUrl = "https://cdn.yemek.com/uploads/2017/10/leeehmecun-duvar-yazisi.jpg",
+            timestamp = 1639163122
+        ), WallStreet(
+            writer = "Börekçi",
+            wallStreet = "Yufka yüreğimizle kıymalı börek yaptılar.",
+            imageUrl = "https://cdn.yemek.com/uploads/2016/11/kiymali-borek-duvar-yazisi.jpg",
+            timestamp = 1639163132
+        ), WallStreet(
+            writer = "Ünlü esnaf",
+            wallStreet = "Bi değişiklik olsun bıktığ ya bıktığ",
+            imageUrl = "https://media-cdn.t24.com.tr/media/posts/2017/05/raw_duvar-yazilarinin-tesir-iliskileri-baglaminda-okumasi_702360746.jpg",
+            timestamp = 1639163142
+        )
     )
 }

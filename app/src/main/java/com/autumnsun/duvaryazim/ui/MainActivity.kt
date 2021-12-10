@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var toolBar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_DuvarYazim)
+        super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         toolBar = binding.viewAppBar.mainToolbar

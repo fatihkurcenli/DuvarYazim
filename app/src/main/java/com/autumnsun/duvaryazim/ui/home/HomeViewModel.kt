@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.autumnsun.duvaryazim.data.local.WallStreetDao
 import com.autumnsun.duvaryazim.data.local.entity.WallStreet
+import com.autumnsun.duvaryazim.data.remote.DataFileGetLocal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -75,15 +76,10 @@ class HomeViewModel @Inject constructor(val wallStreetDao: WallStreetDao) : View
         _wallStreetItem.postValue(newList)
     }
 
-/*    fun setSomeData() = viewModelScope.launch(Dispatchers.IO) {
-        for (i in 0..10) {
-            homeRepo.insertWallWrite(
-                WallStreet(
-                    writer = "Fatih",
-                    wallStreet = "Hello this is test"
-                )
-            )
+    fun addDefaultData() = viewModelScope.launch(Dispatchers.IO) {
+        DataFileGetLocal.localData.forEach {
+            homeRepo.insertWallWrite(it)
         }
-    }*/
+    }
 
 }
