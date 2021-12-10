@@ -8,6 +8,7 @@ import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import com.autumnsun.duvaryazim.databinding.ModelHomeItemBinding
 import com.autumnsun.duvaryazim.utils.LoadingEpoxyModel
 import com.autumnsun.duvaryazim.utils.ViewBindingKotlinModel
+import com.autumnsun.duvaryazim.utils.getDate
 import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import java.text.SimpleDateFormat
@@ -100,13 +101,6 @@ class HomeEpoxyController(
             addFavorite.setOnClickListener {
                 likedItem(wallStreet)
             }
-        }
-
-
-        private fun getDate(timeLongValue: Long): String {
-            val sdf = SimpleDateFormat("dd/MM/yyyy kk:mm", Locale.getDefault())
-            val netDate = Date(timeLongValue)
-            return sdf.format(netDate)
         }
     }
 }

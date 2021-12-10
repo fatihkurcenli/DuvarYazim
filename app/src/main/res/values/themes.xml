@@ -19,4 +19,18 @@
     <style name="PoppinsTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
+
+    <!--    <style name="Theme.DuvarYazim.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+            <item name="appWidgetRadius">10dp</item>
+            <item name="appWidgetPadding">4dp</item>
+            <item name="appWidgetInnerRadius">4dp</item>
+        </style>-->
+
+    <style name="Theme.DuvarYazim.AppWidgetContainerParent" parent="@style/Theme.DuvarYazim">
+        <item name="appWidgetRadius">10dp</item>
+        <item name="appWidgetPadding">4dp</item>
+        <item name="appWidgetInnerRadius">4dp</item>
+    </style>
+
+    <style name="Theme.DuvarYazim.AppWidgetContainer" parent="Theme.DuvarYazim.AppWidgetContainerParent" />
 </resources>

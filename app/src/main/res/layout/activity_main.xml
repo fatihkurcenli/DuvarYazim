@@ -31,26 +31,6 @@
             app:navGraph="@navigation/nav_graph" />
     </LinearLayout>
 
-
-    <!-- <nl.joery.animatedbottombar.AnimatedBottomBar
-         android:id="@+id/bottom_nav_view"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_gravity="bottom"
-         android:background="@color/white"
-         app:abb_iconSize="24dp"
-         app:abb_indicatorAppearance="round"
-         app:abb_indicatorLocation="bottom"
-         app:abb_selectedIndex="0"
-         app:abb_selectedTabType="text"
-         app:abb_tabAnimation="slide"
-         app:abb_tabColor="@color/purple_200"
-         app:abb_tabColorSelected="@color/teal_700"
-         app:abb_tabs="@menu/bottom_menu"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent" />-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bottomNavigationView"
         android:layout_width="0dp"
