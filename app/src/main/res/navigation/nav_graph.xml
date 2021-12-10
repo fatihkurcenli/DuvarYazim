@@ -43,4 +43,13 @@
             app:argType="boolean" />
 
     </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.autumnsun.duvaryazim.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
