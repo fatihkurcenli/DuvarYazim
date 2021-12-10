@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_addWallStreetFragment"
-            app:destination="@id/addWallStreetFragment" />
+            app:destination="@id/addWallStreetFragment"
+            app:enterAnim="@anim/fade_slide_right"
+            app:exitAnim="@anim/fade_slide_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/fade_slide_left" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
