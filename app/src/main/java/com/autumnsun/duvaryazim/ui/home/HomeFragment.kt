@@ -1,9 +1,6 @@
 package com.autumnsun.duvaryazim.ui.home
 
-import android.graphics.Canvas
-import android.graphics.Color
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.DragCallbacks
@@ -12,7 +9,6 @@ import com.autumnsun.duvaryazim.data.local.entity.WallStreet
 import com.autumnsun.duvaryazim.databinding.FragmentHomeBinding
 import com.autumnsun.duvaryazim.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.absoluteValue
 
 
 @AndroidEntryPoint
@@ -28,6 +24,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             navController.navigate(navDirectionAction)
         }, { likedWallStreet ->
             mViewModel.likedWallStreetEntity(likedWallStreet)
+        }, { deleteItem ->
+            mViewModel.deleteWallStreetEntity(deleteItem)
         })
         homeEpoxy.isLoading = true
         binding.homeEpoxy.setController(homeEpoxy)
@@ -36,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
 
         // Setup swipe-to-delete
-        EpoxyTouchHelper.initSwiping(binding.homeEpoxy)
+/*        EpoxyTouchHelper.initSwiping(binding.homeEpoxy)
             .right()
             .withTarget(HomeEpoxyController.WallStreetModel::class.java)
             .andCallbacks(object :
@@ -98,7 +96,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     super.onSwipeReleased(model, itemView)
                     itemView?.alpha = 1f
                 }
-            })
+            })*/
 
         EpoxyTouchHelper.initDragging(homeEpoxy) // an EpoxyController must be used
             .withRecyclerView(binding.homeEpoxy) // The recyclerview the controller is used with

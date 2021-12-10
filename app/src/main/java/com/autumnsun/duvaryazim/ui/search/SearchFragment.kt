@@ -11,10 +11,10 @@ class SearchFragment :
     BaseFragment<FragmentSearchBinding, SearchViewModel>(R.layout.fragment_search) {
 
     override fun initializeUi() {
-        activity?.window?.setFlags(
+/*        activity?.window?.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        )*/
     }
 
 

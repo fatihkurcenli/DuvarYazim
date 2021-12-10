@@ -2,6 +2,7 @@ package com.autumnsun.duvaryazim.ui
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -37,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             topLevelDestinationIds = setOf(
                 R.id.homeFragment,
                 R.id.searchFragment,
-                R.id.favoriteFragment,
-                R.id.settingsFragment
+                R.id.favoriteFragment
             )
         )
 
@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bottom_menu, menu)

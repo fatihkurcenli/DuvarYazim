@@ -11,11 +11,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WallStreetDao {
 
-    @Query("SELECT * FROM WALLSTREET")
+    @Query("SELECT * FROM WALLSTREET ORDER BY timestamp")
     fun getAllWallStreet(): Flow<List<WallStreet>>
 
     @Query("SELECT * FROM WALLSTREET WHERE id=:id")
     fun getEntityById(id: String): WallStreet
+
+    @Query("SELECT * FROM WALLSTREET WHERE wallStreet LIKE :searchQuery")
+    fun searchEntityFromDatabase(searchQuery: String): Flow<List<WallStreet>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(wallStreetWrite: WallStreet)
