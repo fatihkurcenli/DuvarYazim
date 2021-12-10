@@ -23,6 +23,9 @@ interface WallStreetDao {
     @Query("SELECT * FROM WALLSTREET WHERE wallStreet LIKE :searchQuery")
     fun searchEntityFromDatabase(searchQuery: String): Flow<List<WallStreet>>
 
+    @Query("SELECT * FROM WALLSTREET WHERE isLiked=1")
+    fun getAllLikedList(): Flow<List<WallStreet>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(wallStreetWrite: WallStreet)
 

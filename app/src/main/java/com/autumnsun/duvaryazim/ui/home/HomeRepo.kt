@@ -15,4 +15,5 @@ interface HomeRepo {
     suspend fun getAllList(): List<WallStreet>
     suspend fun insertWallWrite(wallWriter: WallStreet)
     fun getSearchWithWallStreetName(wallStreetName: String): Flow<List<WallStreet>>
+    fun getFavoriteStreet(): Flow<List<WallStreet>>
 }

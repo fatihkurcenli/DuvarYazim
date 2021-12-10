@@ -23,6 +23,10 @@ class HomeRepository @Inject constructor(val wallStreetDao: WallStreetDao) : Hom
         return wallStreetDao.searchEntityFromDatabase(wallStreetName)
     }
 
+    override fun getFavoriteStreet(): Flow<List<WallStreet>> {
+        return wallStreetDao.getAllLikedList()
+    }
+
     override suspend fun getAllList(): List<WallStreet> {
         return wallStreetDao.getAllList()
     }
